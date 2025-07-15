@@ -1,0 +1,10 @@
+*.swp
+*.swo
+*.backup
+*.undo
+*.log
+*.cache
+*.session
+lua/chatgpt_api_key.lua
+lua/configs/chatgpt.lua
+lua/secrets/
