@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/configs/runner.lua
+--
 -- Automatizadaor avanzado de tareas comunes por lenguaje
 
 local uv = vim.loop
