@@ -1,27 +1,19 @@
-  local conform = require("conform")
-
-conform.setup({
+require("conform").setup {
+  format_on_save = {
+    timeout_ms = 1000,
+    lsp_fallback = false, -- ❗️Evita que LSPs como pyright formateen
+  },
   formatters_by_ft = {
-    python = { "black", "isort" },
-    lua = { "stylua" },
+    python = { "isort", "black" }, -- 🧠 Orden óptimo: isort → black
     javascript = { "prettier" },
     typescript = { "prettier" },
     html = { "prettier" },
     css = { "prettier" },
-    cpp = { "clang-format" },
-    c = { "clang-format" },
-    java = { "google-java-format" }, -- requiere config externa
+    json = { "prettier" },
+    yaml = { "prettier" },
+    markdown = { "prettier" },
+    c = { "clang_format" },
+    cpp = { "clang_format" },
+    lua = { "stylua" },
   },
-
-  format_on_save = {
-    lsp_fallback = true,
-    timeout_ms = 500,
-  },
-
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.lua", "*.py", "*.js", "*.ts", "*.cpp", "*.java" },
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf, async = false })
-  end,
-  })
-})
+}

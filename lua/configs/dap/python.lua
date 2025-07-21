@@ -1,4 +1,4 @@
-local dap = require("dap")
+local dap = require "dap"
 
 dap.adapters.python = {
   type = "executable",
@@ -11,9 +11,15 @@ dap.configurations.python = {
     type = "python",
     request = "launch",
     name = "Launch file",
-    program = "${file}", -- current file
+    program = "${file}",
     pythonPath = function()
-      return "python"
+      -- Detectar venv activo o usar python del sistema
+      local venv_path = os.getenv "VIRTUAL_ENV"
+      if venv_path then
+        return venv_path .. "/bin/python"
+      else
+        return "python"
+      end
     end,
   },
 }

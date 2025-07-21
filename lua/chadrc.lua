@@ -2,29 +2,33 @@
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
 -- Please read that file to know all available options :(
 
----@type ChadrcConfig
+---@class ChadrcConfig
+---@field ui table?
+---@field nvdash table?
+---@field plugins any
+---@field lsp table?
+---@field null_ls any
 local M = {}
 
-M.base46 = {
-  theme = "tokyonight",
-
   -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
+  --   Comment = { italic = true },
+  --   ["@comment"] = { italic = true },
   -- },
-}
+
 
 M.nvdash = { load_on_startup = true }
+
 M.ui = {
-  tabufline = {
-    lazyload = false,
-  },
+  theme = "catppuccin_icy"
 }
 
 M.plugins = "plugins"
 M.lsp = { setup_lspconf = "configs.lspconfig" }
 M.null_ls = "configs.null-ls"
-M.dap = { setup_dapconf = "configs.dap.init" }
+
+-- extras fuera del config
+vim.g.transparency = true
+vim.g.nvchad_theme = "catppuccin_icy"
 
 require "configs.runner"
 
@@ -40,7 +44,6 @@ vim.g.clipboard = {
   },
   cache_enabled = 0,
 }
-
 vim.opt.clipboard = "unnamedplus"
 
 return M
